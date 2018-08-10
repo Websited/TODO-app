@@ -1,0 +1,55 @@
+body {
+  background-color: #dcdcdc;
+  font-family: 'Lato', sans-serif;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+header {
+    border-bottom: 1px solid #d01067ad;
+    padding-bottom: 10px;
+}
+
+.header-title {
+    text-align: center;
+    font-size: 4em;
+    color: #d01067ad;
+}
+
+#main {
+    margin: 40px auto;
+}
+
+form.todo-form {
+    text-align: center;
+    display: block;
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    margin: 20px 0;
+    font-size: 1.2em;
+}
+
+.input-group {
+    display: grid;
+    margin: 15px 0;
+}
+
+.input-group-prepend {
+    margin: 5px 0;
+}
+
+.btn-submit {
+    margin-top: 20px;
+}
+
+.past-due {
+    background: #969696;
+    color: white;
+}
+
+.past-due h4 {
+    text-decoration: line-through;
+}
