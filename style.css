@@ -45,6 +45,11 @@ form.todo-form {
     margin-top: 20px;
 }
 
+.finished {
+    background: #50c7ff;
+    color: white;
+}
+
 .past-due {
     background: #969696;
     color: white;
