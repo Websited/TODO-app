@@ -98,8 +98,7 @@ createTodoList(todos);
 function handleData() {
   const name = document.getElementById("todo-name").value
   const date = document.getElementById("todo-date").value.split("-").join("")
-  const id = todos.length;
+  const id = todos[todos.length-1].id + 1;
   todos.add(new todoItem(id, false, name, date));
-  console.log(todos);
   createTodoList(todos);
 }
