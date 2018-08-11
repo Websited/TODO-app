@@ -28,18 +28,18 @@
          <div class="container" id="main">
              <div class="row">
                  <div class="col-sm-12 form-container">
-                     <form class="todo-form" action="">
+                     <form class="todo-form" id="form" onsubmit="event.preventDefault(); handleData()">
                          <div class="input-group mb-3">
                              <div class="input-group-prepend todo-name todo">
                                  <span class="input-group-text" id="enter-todo">Enter Your TODO (Required)</span>
                              </div>
-                                <input class="form-control todo-name todo" type="text" name="todo-name" value="prepare for job interview"  aria-label="enter-todo" aria-describedby="enter-todo">
+                                <input id="todo-name" class="form-control todo-name todo" type="text" name="todo-name" value="prepare for job interview"  aria-label="enter-todo" aria-describedby="enter-todo">
                          </div>
                          <div class="input-group mb-3">
                              <div class="input-group-prepend todo-date todo">
                                  <span class="input-group-text" id="date-todo">Enter deadline for Your TODO (Optional)</span>
                              </div>
-                                <input class="form-control todo-date todo" type="date" name="todo-date" value=""  aria-label="date-todo" aria-describedby="enter-todo">
+                                <input id="todo-date" class="form-control todo-date todo" type="date" name="todo-date" value=""  aria-label="date-todo" aria-describedby="enter-todo">
                          </div>
                          <button type="submit" name="button" class="btn btn-primary btn-submit">Submit</button>
                      </form>

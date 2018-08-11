@@ -1,7 +1,7 @@
 let today = new Date();
 
 const todoItem = class {
-  constructor(id,done, name, deadline) {
+  constructor(id,done = false, name, deadline = "") {
     this.id = id,
     this.done = done;
     this.name = name;
@@ -17,8 +17,6 @@ const todoItem = class {
     } else {
       this.done = true;
     }
-
-    console.log(this);
   }
 };
 
@@ -28,7 +26,7 @@ class todoItemCollection extends Array {
     this.name = name;
   }
   add(todo) {
-    this.push(todo);
+    this[0].push(todo);
   }
   remove(id) {
     this[0] = this[0].filter(item => item.id != id);
@@ -43,7 +41,7 @@ const todos = new todoItemCollection('My todos', [
 ]);
 
 function generateTodoMarkup(todo){
-  return `<div class="panel panel-default todo-item ${todo.done ? "finished" : ""} ${todo.convertDeadline() > today ? "past-due" : ""}" >
+  return `<div class="panel panel-default todo-item ${todo.done ? "finished" : ""} ${todo.deadline === "" ? "" : (todo.convertDeadline() < today ? "past-due" : "")}" >
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-2">
@@ -92,7 +90,15 @@ function deleteTodo(id) {
 function toggleDone(id) {
   todos[0].filter(item => item.id === id)[0].toggleCheckbox();
   createTodoList(todos);
-  console.log(todos);
 }
 
 createTodoList(todos);
+
+function handleData() {
+  const name = document.getElementById("todo-name").value
+  const date = document.getElementById("todo-date").value.split("-").join("")
+  const id = todos[0].length;
+  todos.add(new todoItem(id, false, name, date));
+  console.log(todos);
+  createTodoList(todos);
+}
