@@ -1,7 +1,7 @@
 let today = new Date();
 
 const todoItem = class {
-  constructor(id,done = false, name, deadline = "") {
+  constructor(id,done = false, name, deadline) {
     this.id = id,
     this.done = done;
     this.name = name;
@@ -63,7 +63,7 @@ function generateTodoMarkup(todo){
                         </h4>
                     </div>
                     <div class="col-sm-2">
-                        <button type="submit" class="btn btn-block btn-primary" name="remove todo">Edit</button>
+                        <button onclick="deleteTodo(${todo.id}), editTodo('${todo.name}', ${todo.deadline})" class="btn btn-block btn-primary" name="edit todo">Edit</button>
                     </div>
                     <div class="col-sm-2">
                         <button onclick="deleteTodo(${todo.id})" type="submit" class="btn btn-block btn-danger" name="remove todo">Remove</button>
@@ -96,9 +96,16 @@ function toggleDone(id) {
 createTodoList(todos);
 
 function handleData() {
-  const name = document.getElementById("todo-name").value
-  const date = document.getElementById("todo-date").value.split("-").join("")
+  const name = document.getElementById("todo-name").value;
+  const date = document.getElementById("todo-date").value.split("-").join("");
   const id = todos[todos.length-1].id + 1;
   todos.add(new todoItem(id, false, name, date));
   createTodoList(todos);
+}
+
+function editTodo(todoName, deadline) {
+    let name = document.getElementById("todo-name");
+    name.value = todoName;
+    let date = document.getElementById("todo-date");
+    date.value = deadline.toString().substring(0,4) + "-" + deadline.toString().substring(4,6) + "-" + deadline.toString().substring(6);
 }
