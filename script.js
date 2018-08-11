@@ -26,19 +26,20 @@ class todoItemCollection extends Array {
     this.name = name;
   }
   add(todo) {
-    this[0].push(todo);
+    this.push(todo);
   }
   remove(id) {
-    this[0] = this[0].filter(item => item.id != id);
+    const toRemove = this.indexOf(this.filter(item => item.id === id)[0]);
+    this.splice(toRemove,1);
   }
 }
 
-const todos = new todoItemCollection('My todos', [
+const todos = new todoItemCollection('My todos',
   new todoItem(0,false, "learn react", 20181231),
   new todoItem(1,false, "buy milk", 20180808),
   new todoItem(2,true, "fix bike", ""),
   new todoItem(3,true, "learn react", 20181019),
-]);
+);
 
 function generateTodoMarkup(todo){
   return `<div class="panel panel-default todo-item ${todo.done ? "finished" : ""} ${todo.deadline === "" ? "" : (todo.convertDeadline() < today ? "past-due" : "")}" >
@@ -74,8 +75,8 @@ function generateTodoMarkup(todo){
 
 function createTodoList(todos) {
   const todoList = [];
-  for (i = 0; i < todos[0].length; i++) {
-    const todo = generateTodoMarkup(todos[0][i]);
+  for (i = 0; i < todos.length; i++) {
+    const todo = generateTodoMarkup(todos[i]);
     todoList.push(todo);
   }
   const listItem = document.getElementById("list");
@@ -88,7 +89,7 @@ function deleteTodo(id) {
 }
 
 function toggleDone(id) {
-  todos[0].filter(item => item.id === id)[0].toggleCheckbox();
+  todos.filter(item => item.id === id)[0].toggleCheckbox();
   createTodoList(todos);
 }
 
@@ -97,7 +98,7 @@ createTodoList(todos);
 function handleData() {
   const name = document.getElementById("todo-name").value
   const date = document.getElementById("todo-date").value.split("-").join("")
-  const id = todos[0].length;
+  const id = todos.length;
   todos.add(new todoItem(id, false, name, date));
   console.log(todos);
   createTodoList(todos);
