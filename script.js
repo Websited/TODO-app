@@ -10,6 +10,16 @@ const todoItem = class {
   convertDeadline() {
     return new Date(this.deadline.toString().substring(0,4),this.deadline.toString().substring(4,6)-1,this.deadline.toString().substring(6))
   }
+
+  toggleCheckbox() {
+    if (this.done === true) {
+      this.done = false;
+    } else {
+      this.done = true;
+    }
+
+    console.log(this);
+  }
 };
 
 class todoItemCollection extends Array {
@@ -28,7 +38,7 @@ class todoItemCollection extends Array {
 const todos = new todoItemCollection('My todos', [
   new todoItem(0,false, "learn react", 20181231),
   new todoItem(1,false, "buy milk", 20180808),
-  new todoItem(2,true, "fix bike", 20180119),
+  new todoItem(2,true, "fix bike", ""),
   new todoItem(3,true, "learn react", 20181019),
 ]);
 
@@ -39,7 +49,7 @@ function generateTodoMarkup(todo){
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="" value="Gotowe" ${todo.done ? "checked" : ""}>
+                                <input onclick=toggleDone(${todo.id}) type="checkbox" ${todo.done ? "checked" : ""}>
                             </label>
                         </div>
                     </div>
@@ -50,7 +60,7 @@ function generateTodoMarkup(todo){
                     </div>
                     <div class="col-sm-2">
                         <h4 class="todo-date">
-                            ${todo.convertDeadline().toISOString().slice(0, 10)}
+                            ${todo.deadline ?  todo.convertDeadline().toISOString().slice(0, 10) : "No deadline"}
                         </h4>
                     </div>
                     <div class="col-sm-2">
@@ -77,6 +87,12 @@ function createTodoList(todos) {
 function deleteTodo(id) {
   todos.remove(id);
   createTodoList(todos);
+}
+
+function toggleDone(id) {
+  todos[0].filter(item => item.id === id)[0].toggleCheckbox();
+  createTodoList(todos);
+  console.log(todos);
 }
 
 createTodoList(todos);
