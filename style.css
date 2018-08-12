@@ -59,3 +59,8 @@ form.todo-form {
 .past-due h4 {
     text-decoration: line-through;
 }
+
+#new-name {
+  color: black;
+  width: 100%;
+}

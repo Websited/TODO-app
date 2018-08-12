@@ -1,4 +1,4 @@
-let today = new Date();
+const today = new Date();
 
 const todoItem = class {
   constructor(id,done = false, name, deadline) {
@@ -8,7 +8,14 @@ const todoItem = class {
     this.deadline = deadline;
   }
   convertDeadline() {
-    return new Date(this.deadline.toString().substring(0,4),this.deadline.toString().substring(4,6)-1,this.deadline.toString().substring(6))
+    const year = this.deadline.toString().substring(0,4)
+    const month = this.deadline.toString().substring(4,6)-1
+    const day = this.deadline.toString().substring(6,8)
+    return new Date(year,month,day);
+  }
+
+  edit(name) {
+    this.name = name;
   }
 
   toggleCheckbox() {
@@ -21,9 +28,8 @@ const todoItem = class {
 };
 
 class todoItemCollection extends Array {
-  constructor(name,...todos) {
+  constructor(...todos) {
     super(...todos);
-    this.name = name;
   }
   add(todo) {
     this.push(todo);
@@ -34,11 +40,7 @@ class todoItemCollection extends Array {
   }
 }
 
-const todos = new todoItemCollection('My todos',
-  new todoItem(0,false, "learn react", 20181231),
-  new todoItem(1,false, "buy milk", 20180808),
-  new todoItem(2,true, "fix bike", ""),
-  new todoItem(3,true, "learn react", 20181019),
+const todos = new todoItemCollection(
 );
 
 function generateTodoMarkup(todo){
@@ -52,8 +54,8 @@ function generateTodoMarkup(todo){
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <h4 class="todo-name">
+                    <div class="col-sm-6">
+                        <h4 class="todo-name" id="${todo.id}-name" ondblclick="appendForm(this, ${todo.id})">
                             ${todo.name}
                         </h4>
                     </div>
@@ -61,9 +63,6 @@ function generateTodoMarkup(todo){
                         <h4 class="todo-date">
                             ${todo.deadline ?  todo.convertDeadline().toISOString().slice(0, 10) : "No deadline"}
                         </h4>
-                    </div>
-                    <div class="col-sm-2">
-                        <button onclick="deleteTodo(${todo.id}), editTodo('${todo.name}', ${todo.deadline})" class="btn btn-block btn-primary" name="edit todo">Edit</button>
                     </div>
                     <div class="col-sm-2">
                         <button onclick="deleteTodo(${todo.id})" type="submit" class="btn btn-block btn-danger" name="remove todo">Remove</button>
@@ -96,16 +95,25 @@ function toggleDone(id) {
 createTodoList(todos);
 
 function handleData() {
-  const name = document.getElementById("todo-name").value;
-  const date = document.getElementById("todo-date").value.split("-").join("");
-  const id = todos[todos.length-1].id + 1;
-  todos.add(new todoItem(id, false, name, date));
+  const name = document.getElementById("todo-name");
+  const date = document.getElementById("todo-date");
+  const id = todos.length > 0 ? todos[todos.length-1].id + 1 : 0;
+  todos.add(new todoItem(id, false, name.value, date.value.split("-").join("")));
   createTodoList(todos);
+  name.value = ""
+  date.value = ""
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-function editTodo(todoName, deadline) {
-    let name = document.getElementById("todo-name");
-    name.value = todoName;
-    let date = document.getElementById("todo-date");
-    date.value = deadline.toString().substring(0,4) + "-" + deadline.toString().substring(4,6) + "-" + deadline.toString().substring(6);
+function appendForm(todoNameElement, todoId) {
+  todoNameElement.innerHTML = `<form onsubmit="event.preventDefault(); editName(${todoId});"><input id='new-name' type="text"/></form>`
 }
+
+function editName(todoId) {
+  const todo = todos.filter(todo => todo.id === todoId)[0];
+  todo.edit(document.getElementById('new-name').value);
+  createTodoList(todos);
+}
+var retrievedObject = localStorage.getItem('todos');
+console.log('retrievedObject: ', JSON.parse(retrievedObject));
+// todos.push(JSON.parse(retrievedObject));
