@@ -113,6 +113,7 @@ function appendForm(todoNameElement, todoId) {
 function editName(todoId) {
   const todo = todos.filter(todo => todo.id === todoId)[0];
   todo.edit(document.getElementById('new-name').value);
+  localStorage.setItem('todos', JSON.stringify(todos));
   createTodoList(todos);
 }
 var retrievedTodos = JSON.parse(localStorage.getItem('todos'));
