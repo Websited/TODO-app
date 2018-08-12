@@ -84,15 +84,16 @@ function createTodoList(todos) {
 
 function deleteTodo(id) {
   todos.remove(id);
+  localStorage.setItem('todos', JSON.stringify(todos));
   createTodoList(todos);
 }
 
 function toggleDone(id) {
   todos.filter(item => item.id === id)[0].toggleCheckbox();
+  localStorage.setItem('todos', JSON.stringify(todos));
   createTodoList(todos);
 }
 
-createTodoList(todos);
 
 function handleData() {
   const name = document.getElementById("todo-name");
@@ -114,6 +115,8 @@ function editName(todoId) {
   todo.edit(document.getElementById('new-name').value);
   createTodoList(todos);
 }
-var retrievedTodos = localStorage.getItem('todos');
-console.log('retrievedTodos: ', JSON.parse(retrievedTodos));
-// todos.push(JSON.parse(retrievedTodos));
+var retrievedTodos = JSON.parse(localStorage.getItem('todos'));
+retrievedTodos.forEach(function(todo){
+  todos.add(new todoItem(todo.id,todo.done,todo.name,todo.deadline))
+  createTodoList(todos);
+});
