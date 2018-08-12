@@ -114,6 +114,6 @@ function editName(todoId) {
   todo.edit(document.getElementById('new-name').value);
   createTodoList(todos);
 }
-var retrievedObject = localStorage.getItem('todos');
-console.log('retrievedObject: ', JSON.parse(retrievedObject));
-// todos.push(JSON.parse(retrievedObject));
+var retrievedTodos = localStorage.getItem('todos');
+console.log('retrievedTodos: ', JSON.parse(retrievedTodos));
+// todos.push(JSON.parse(retrievedTodos));
