@@ -139,9 +139,14 @@ input.todo {
   padding: 0;
 }
 
-.finished, .past-due {
-  background: #f7f7f7;
+.finished {
+  color: #fff;
+  background: #2196f3;
+}
+
+.past-due {
   color: #b9b9b9;
+  background: #f7f7f7;
 }
 
 .past-due h4 {
@@ -251,11 +256,11 @@ button.button-remove:hover {
 }
 
 .switch-input:checked+.switch-label:before {
-  background-color: #448aff;
+  background-color: #0d47a1;
 }
 
 .switch-input:checked+.switch-label:after {
-  background-color: #2962ff;
+  background-color: #1565c0;
   -ms-transform: translate(80%, -50%);
   -webkit-transform: translate(80%, -50%);
   transform: translate(80%, -50%);
@@ -284,15 +289,17 @@ input[type=date] {
   .todo-container {
     max-width: 700px;
   }
+
   main {
     padding: 5%;
-}
+  }
 }
 
 @media screen and (max-width: 510px) {
   form.todo-form {
     flex-direction: column;
   }
+
   .edit-icon {
     display: none;
   }
@@ -306,7 +313,7 @@ input[type=date] {
     height: 54px;
     width: 54px;
     margin: 20px auto 0 auto;
-}
+  }
 }
 
 @media screen and (max-width:425px) {
@@ -314,7 +321,7 @@ input[type=date] {
     flex-direction: column;
   }
 
-  .todo-item > * {
+  .todo-item>* {
     margin: 10px;
   }
 }
