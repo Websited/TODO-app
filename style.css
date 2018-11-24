@@ -295,7 +295,7 @@ input[type=date] {
   }
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 520px) {
   form.todo-form {
     flex-direction: column;
   }
@@ -314,9 +314,7 @@ input[type=date] {
     width: 54px;
     margin: 20px auto 0 auto;
   }
-}
 
-@media screen and (max-width:425px) {
   .todo-item {
     flex-direction: column;
   }
