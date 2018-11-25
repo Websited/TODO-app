@@ -1,5 +1,5 @@
 body {
-  background-color: #e0e0e0;
+  background-color: #fafafa;
   height: 100vh;
   font-family: 'Roboto', sans-serif;
 }
@@ -58,7 +58,7 @@ h6 {
 }
 
 header {
-  background: #1565c0;
+  background: #212121;
   margin-bottom: 20px;
   box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.2);
 }
@@ -102,14 +102,14 @@ form.todo-form {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  color: #b9b9b9;
+  color: #9e9e9e;
 }
 
 input.todo {
   border: 0;
-  border-bottom: 1px solid #b9b9b9;
+  border-bottom: 1px solid #e0e0e0;
   padding: 0;
-  color: #484848;
+  color: #212121;
   margin: 0;
   font-weight: 400;
   font-size: 15px;
@@ -121,8 +121,8 @@ input.todo {
 
 .todo-item {
   background: #fff;
-  border-top: 1px solid #b9b9b9;
-  color: #484848;
+  border-top: 1px solid #e0e0e0;
+  color: #212121;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -141,12 +141,12 @@ input.todo {
 
 .finished {
   color: #fff;
-  background: #2196f3;
+  background: #66bb6a;
 }
 
 .past-due {
-  color: #b9b9b9;
-  background: #f7f7f7;
+  color: #9e9e9e;
+  background: #eeeeee;
 }
 
 .past-due h4 {
@@ -156,15 +156,15 @@ input.todo {
 .clear-finished {
   text-align: center;
   padding: 30px;
-  color: #b9b9b9;
+  color: #9e9e9e;
   background: white;
-  border-top: 1px solid #b9b9b9;
+  border-top: 1px solid #e0e0e0;
   border-radius: 0 0 15px 15px;
   cursor: pointer;
 }
 
 .clear-finished:hover {
-  color: #484848;
+  color: #212121;
 }
 
 .clear-finished>.button {
@@ -256,11 +256,11 @@ button.button-remove:hover {
 }
 
 .switch-input:checked+.switch-label:before {
-  background-color: #0d47a1;
+  background-color: #1b5e20;
 }
 
 .switch-input:checked+.switch-label:after {
-  background-color: #1565c0;
+  background-color: #2e7d32;
   -ms-transform: translate(80%, -50%);
   -webkit-transform: translate(80%, -50%);
   transform: translate(80%, -50%);
