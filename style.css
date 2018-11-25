@@ -8,6 +8,16 @@ body {
   transition: .2s ease-in-out;
 }
 
+.material-icons {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: default;
+  -o-user-select: none;
+  -moz-user-select: none;
+}
+
 h1, h2 {
   font-weight: 100;
 }
