@@ -21,61 +21,22 @@
   </header>
   <main>
     <div class="todo-container">
-      <form class="todo-form" action="">
+      <form class="todo-form" id="form" onsubmit="event.preventDefault(); TodoApp.handleData()">
         <div class="edit-icon">
           <i class="material-icons">mode_edit</i>
         </div>
-        <input class="form-control todo-name subtitle-1 todo" type="text" name="todo-name subtitle-1" value="Create task..." aria-label="enter-todo" aria-describedby="enter-todo">
-        <input class="form-control todo-date subtitle-2 todo" name="todo-date subtitle-2" value="Choose date..." aria-label="date-todo" aria-describedby="enter-todo" onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'; this.value='Choose date...'}">
+        <input id="todo-name" class="form-control todo-name subtitle-1 todo" type="text" name="todo-name subtitle-1" placeholder="Create task..." aria-label="enter-todo"
+          aria-describedby="enter-todo" required>
+        <input type="date" id="todo-date" class="form-control todo-date subtitle-2 todo" name="todo-date subtitle-2" aria-label="date-todo" aria-describedby="enter-todo">
         <button type="submit" name="button" class="button button-submit"><i class="material-icons">add</i></button>
       </form>
-      <div class="list-container">
-        <div class="todo-item">
-          <div class="checkbox">
-            <input type="checkbox" id="checkbox-1" name="" value="Gotowe" class="switch-input">
-            <label for="checkbox-1" class="switch-label"></label>
-          </div>
-          <p class="todo-name subtitle-1">
-            Prepare for job interview.
-          </p>
-          <p class="todo-date subtitle-2">
-            19 January 2018
-          </p>
-          <button type="submit" class="button button-remove" name="remove todo"><i class="material-icons">delete</i></button>
-        </div>
-        <div class="todo-item finished">
-          <div class="checkbox">
-            <input type="checkbox" id="checkbox-2" name="" value="Gotowe" class="switch-input" checked>
-            <label for="checkbox-2" class="switch-label"></label>
-          </div>
-          <p class="todo-name subtitle-1">
-            Prepare for job interview.
-          </p>
-          <p class="todo-date subtitle-2">
-            19 January 2018
-          </p>
-          <button type="submit" class="button button-remove" name="remove todo"><i class="material-icons">delete</i></button>
-        </div>
-        <div class="todo-item past-due">
-          <div class="checkbox">
-            <input type="checkbox" id="checkbox-3" name="" value="Gotowe" class="switch-input">
-            <label for="checkbox-3" class="switch-label"></label>
-          </div>
-          <p class="todo-name subtitle-1">
-            Prepare for job interview.
-          </p>
-          <p class="todo-date subtitle-2">
-            19 January 2018
-          </p>
-          <button type="submit" class="button button-remove" name="remove todo"><i class="material-icons">delete</i></button>
-        </div>
-        <div class="clear-finished">
-          <span class="button">Clear Completed Tasks</span>
-        </div>
+      <div id="list" class="list-container">
+      </div>
+      <div class="clear-finished">
+        <span class="button">Clear Completed Tasks</span>
       </div>
     </div>
   </main>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="script.js"></script>
 </body>
 

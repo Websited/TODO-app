@@ -125,6 +125,10 @@ input.todo {
   font-size: 15px;
 }
 
+::placeholder {
+  color: #212121;
+}
+
 .list-container {
   border-radius: 15px;
 }
