@@ -123,6 +123,7 @@ input.todo {
   margin: 0;
   font-weight: 400;
   font-size: 15px;
+  text-align: center;
 }
 
 ::placeholder {
@@ -144,8 +145,26 @@ input.todo {
   padding: 30px 0;
 }
 
-.todo-name, .todo-date {
+.todo-item .todo-name, .todo-item .todo-date {
   cursor: pointer;
+  width: 20%;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+input#new-name {
+    border: 0;
+    border-bottom: 1px solid #e0e0e0;
+    color: #212121;
+    margin: 0;
+    font-weight: 400;
+    padding: 15px 10px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .todo-item>* {
@@ -335,5 +354,9 @@ input[type=date] {
 
   .todo-item>* {
     margin: 10px;
+  }
+
+  .todo-item .todo-name, .todo-item .todo-date {
+    width: 100%;
   }
 }
