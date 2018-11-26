@@ -310,6 +310,7 @@ button.button-remove:hover {
 .past-due>.todo-date:after {
   content: "Past due";
   display: block;
+  width: 100%;
   color: #ff5252;
   text-align: center;
 }

@@ -44,6 +44,5 @@ const TodoApp = {
   localStorageWrite: function() {
     localStorage.setItem('todos', JSON.stringify(todos));
     HTMLTodoIRenderer.render(todos);
-    console.log("writing!");
   }
 };
