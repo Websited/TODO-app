@@ -16,28 +16,33 @@ const TodoApp = {
     todos.remove(id);
     this.localStorageWrite();
   },
+  deleteCompleted: function() {
+    completedTodos = todos.filter(todo => todo.done === true);
+    completedTodos.forEach(todo => TodoApp.deleteTodo(todo.id));
+    console.log(todos);
+  },
   appendForm: function(todoNameElement,name, todoId) {
-    todoNameElement.innerHTML = `<form onsubmit="event.preventDefault(); TodoApp.editName(${todoId});"><span class="input-group-text">Press Enter to save</span><input id='new-name' type="text" value=${name} required/></form>`
+    todoNameElement.innerHTML = `<form class="name-edit" onsubmit="event.preventDefault(); TodoApp.editName(${todoId});"><input maxlength="20" id='new-name' type="text" value=${name} required/></form>`
   },
   editName: function(todoId) {
     const todo = todos.filter(todo => todo.id === todoId)[0];
     todo.edit(document.getElementById('new-name').value);
     localStorage.setItem('todos', JSON.stringify(todos));
-    HTMLTodoRenderer.render(todos);
+    HTMLTodoIRenderer.render(todos);
   },
   localStorageRead: function() {
     var retrievedTodos = JSON.parse(localStorage.getItem('todos'));
     if (retrievedTodos) {
       retrievedTodos.forEach(function(todo) {
         todos.add(new TodoItem(todo.id, todo.done, todo.name,todo.deadline.substring(0,10).split("-").join("")))
-        HTMLTodoRenderer.render(todos);
+        HTMLTodoIRenderer.render(todos);
       });
     } else {
-      HTMLTodoRenderer.render(todos);
+      HTMLTodoIRenderer.render(todos);
     }
   },
   localStorageWrite: function() {
     localStorage.setItem('todos', JSON.stringify(todos));
-    HTMLTodoRenderer.render(todos);
+    HTMLTodoIRenderer.render(todos);
   }
 };

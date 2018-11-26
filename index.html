@@ -1,62 +1,47 @@
- <!DOCTYPE html>
- <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <title>Vanilla JS TODO app</title>
-     <meta name="description" content="Vanilla js todo app">
-<link rel="stylesheet" href="normalize.css">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-     <!--[if lt IE 9]>
+  <meta charset="UTF-8">
+  <title>Vanilla JS TODO app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vanilla js todo app">
+  <link rel="stylesheet" href="normalize.css">
+  <!--[if lt IE 9]>
        <script src = "http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
      <![endif]-->
-     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
- </head>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
 
- <body>
-     <header>
-         <div class="container">
-             <div class="row">
-                 <div class="col-sm-12">
-                 <h1 class="header-title">TODO App</h1>
-                 </div>
-             </div>
-         </div>
-     </header>
-     <main>
-         <div class="container" id="main">
-             <div class="row">
-                 <div class="col-sm-12 form-container">
-                     <form class="todo-form" id="form" onsubmit="event.preventDefault(); TodoApp.handleData()">
-                         <div class="input-group mb-3">
-                             <div class="input-group-prepend todo-name todo">
-                                 <span class="input-group-text" id="enter-todo">Enter Your TODO (Required)</span>
-                             </div>
-                                <input id="todo-name" class="form-control todo-name todo" type="text" name="todo-name" value=""  aria-label="enter-todo" aria-describedby="enter-todo" required>
-                         </div>
-                         <div class="input-group mb-3">
-                             <div class="input-group-prepend todo-date todo">
-                                 <span class="input-group-text" id="date-todo">Enter deadline for Your TODO (Optional)</span>
-                             </div>
-                                <input id="todo-date" class="form-control todo-date todo" type="date" name="todo-date" value=""  aria-label="date-todo" aria-describedby="enter-todo">
-                         </div>
-                         <button type="submit" name="button" class="btn btn-primary btn-submit">Submit</button>
-                     </form>
-                 </div>
-             </div>
-             <div id="list">
-             </div>
-         </div>
-     </main>
-      <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-      <script src="testFramework.js"></script>
-      <script src="HTMLTodoRenderer.js"></script>
-      <script src="TodoApp.js"></script>
-      <script src="TodoItem.js"></script>
-      <script src="TodoItemCollection.js"></script>
-      <script src="script.js"></script>
-
+<body>
+  <header>
+    <h3 class="header-title">My VanillaJS TODO APP</h3>
+  </header>
+  <main>
+    <div class="todo-container">
+      <form class="todo-form" id="form" onsubmit="event.preventDefault(); TodoApp.handleData()">
+        <div class="edit-icon">
+          <i class="material-icons">mode_edit</i>
+        </div>
+        <input maxlength="20" id="todo-name" class="form-control todo-name subtitle-1 todo" type="text" name="todo-name subtitle-1" placeholder="Create task..." aria-label="enter-todo" aria-describedby="enter-todo" required>
+        <input type="date" id="todo-date" class="form-control todo-date subtitle-2 todo" name="todo-date subtitle-2" aria-label="date-todo" aria-describedby="enter-todo">
+        <button type="submit" name="button" class="button button-submit"><i class="material-icons">add</i></button>
+      </form>
+      <div id="list" class="list-container">
+      </div>
+      <div class="clear-finished">
+        <span onclick="TodoApp.deleteCompleted()" class="button">Clear Completed Tasks</span>
+      </div>
+    </div>
+  </main>
+  <script src="testFramework.js"></script>
+  <script src="HTMLTodoRenderer.js"></script>
+  <script src="TodoApp.js"></script>
+  <script src="TodoItem.js"></script>
+  <script src="TodoItemCollection.js"></script>
+  <script src="script.js"></script>
 </body>
- </html>
+
+</html>
