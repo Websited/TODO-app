@@ -8,17 +8,20 @@ class TodoItemCollection extends Array {
     super(...todos);
   }
   add(todo) {
-    this.push(todo);
+    if(this.filter(obj => obj.id === todo.id).length === 0) {
+      this.push(todo);
+    }
   }
   count() {
     return this.length;
   }
   remove(id) {
-    /**
-     * this could be improved
-     */
-    const toRemove = this.indexOf(this.filter(item => item.id === id)[0]);
-    this.splice(toRemove, 1);
+    const toRemove = this.filter(obj => obj.id === id);
+
+    if (toRemove.length > 0) {
+      this.splice(this.indexOf(toRemove), 1);
+    }
+
   }
 }
 
