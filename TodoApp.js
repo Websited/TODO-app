@@ -6,15 +6,15 @@ const TodoApp = {
     todos.add(new TodoItem(id, false, name.value, date.value.split("-").join("")));
     name.value = ""
     date.value = ""
-    this.localStorageWrite();
+    this.dataWrite('myTodos', todos);
   },
   toggleDone: function(id) {
     todos.filter(item => item.id === id)[0].toggleCheckbox();
-    this.localStorageWrite();
+    this.dataWrite('myTodos', todos);
   },
    deleteTodo: function(id) {
     todos.remove(id);
-    this.localStorageWrite();
+    this.dataWrite('myTodos', todos);
   },
   deleteCompleted: function() {
     completedTodos = todos.filter(todo => todo.done === true);
@@ -30,8 +30,8 @@ const TodoApp = {
     localStorage.setItem('todos', JSON.stringify(todos));
     HTMLTodoIRenderer.render(todos);
   },
-  localStorageRead: function() {
-    var retrievedTodos = JSON.parse(localStorage.getItem('todos'));
+  dataRead: function(todoCollectionName, api = 'localStorage') {
+    var retrievedTodos = JSON.parse(apis[api].read(todoCollectionName));
     if (retrievedTodos) {
       retrievedTodos.forEach(function(todo) {
         todos.add(new TodoItem(todo.id, todo.done, todo.name,todo.deadline.substring(0,10).split("-").join("")))
@@ -41,8 +41,8 @@ const TodoApp = {
       HTMLTodoIRenderer.render(todos);
     }
   },
-  localStorageWrite: function() {
-    localStorage.setItem('todos', JSON.stringify(todos));
-    HTMLTodoIRenderer.render(todos);
+  dataWrite: function(todoCollectionName, todoData, api = 'localStorage') {
+    apis[api].write(todoCollectionName, todoData);
+    HTMLTodoIRenderer.render(todoData);
   }
 };

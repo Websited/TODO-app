@@ -1,4 +1,4 @@
 const todos = new TodoItemCollection();
-TodoApp.localStorageRead();
+TodoApp.dataRead('myTodos');
 
 runSuites();

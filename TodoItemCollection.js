@@ -16,12 +16,10 @@ class TodoItemCollection extends Array {
     return this.length;
   }
   remove(id) {
-    const toRemove = this.filter(obj => obj.id === id);
-
-    if (toRemove.length > 0) {
-      this.splice(this.indexOf(toRemove), 1);
+    const toRemove = this.indexOf(this.filter(item => item.id === id)[0]);
+    if (toRemove >= 0) {
+      this.splice(toRemove, 1);
     }
-
   }
 }
 
