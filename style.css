@@ -145,7 +145,7 @@ input.todo {
   padding: 30px 0;
 }
 
-.todo-item .todo-name, .todo-item .todo-date {
+.todo-item .todo-title, .todo-item .todo-date {
   cursor: pointer;
   width: 20%;
   text-align: center;
@@ -156,7 +156,7 @@ input.todo {
   align-items: center;
 }
 
-input#new-name {
+input#new-title {
     border: 0;
     border-bottom: 1px solid #e0e0e0;
     color: #212121;
@@ -357,7 +357,7 @@ input[type=date] {
     margin: 10px;
   }
 
-  .todo-item .todo-name, .todo-item .todo-date {
+  .todo-item .todo-title, .todo-item .todo-date {
     width: 100%;
   }
 }

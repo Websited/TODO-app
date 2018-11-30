@@ -1,20 +1,20 @@
 const TodoItem = class {
-  constructor(id, done = false, name, deadline) {
+  constructor(id, completed = false, title, deadline) {
     this.id = id;
-    this.done = done;
-    this.name = name;
+    this.completed = completed;
+    this.title = title;
     this.deadline = deadline === "" ? "" : new Date(Date.UTC(deadline.toString().substring(0, 4), deadline.toString().substring(4, 6) - 1, deadline.toString().substring(6)));
   }
 
-  edit(name) {
-    this.name = name;
+  edit(title) {
+    this.title = title;
   }
 
   toggleCheckbox() {
-    if (this.done === true) {
-      this.done = false;
+    if (this.completed === true) {
+      this.completed = false;
     } else {
-      this.done = true;
+      this.completed = true;
     }
   }
 };

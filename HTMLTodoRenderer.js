@@ -6,13 +6,13 @@ const HTMLTodoIRenderer = {
     if (todos.length > 0) {
       todos.forEach(function(todoObj){
         function generateTodoMarkup(todoObj) {
-          return `<div class="todo-item ${todoObj.done ? "finished" : ""} ${todoObj.deadline === "" ? "" : (todoObj.deadline < today ? "past-due" : "")}">
+          return `<div class="todo-item ${todoObj.completed ? "finished" : ""} ${todoObj.deadline === "" ? "" : (todoObj.deadline < today ? "past-due" : "")}">
                     <div class="checkbox">
-                      <input onclick=TodoApp.toggleDone(${todoObj.id}) type="checkbox" id="checkbox-${todoObj.id}" name="" value="Gotowe" class="switch-input"  ${todoObj.done ? "checked" : ""}>
+                      <input onclick=TodoApp.toggleCompleted(${todoObj.id}) type="checkbox" id="checkbox-${todoObj.id}" name="" value="Gotowe" class="switch-input"  ${todoObj.completed ? "checked" : ""}>
                       <label for="checkbox-${todoObj.id}" class="switch-label"></label>
                     </div>
-                    <p class="todo-name subtitle-1" id="${todoObj.id}-name" ondblclick="TodoApp.appendForm(this,'${todoObj.name}', ${todoObj.id})">
-                        ${todoObj.name}
+                    <p class="todo-title subtitle-1" id="${todoObj.id}-name" ondblclick="TodoApp.appendForm(this,'${todoObj.title}', ${todoObj.id})">
+                        ${todoObj.title}
                     </p>
                     <p class="todo-date subtitle-2">
                         ${todoObj.deadline ?  todoObj.deadline.toISOString().substring(0,10) : "No deadline"}
