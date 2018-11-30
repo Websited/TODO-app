@@ -30,8 +30,9 @@ const TodoApp = {
     localStorage.setItem('todos', JSON.stringify(todos));
     HTMLTodoIRenderer.render(todos);
   },
-  dataRead: function(todoCollectiontitle, api = 'localStorage') {
-    var retrievedTodos = JSON.parse(apis[api].read(todoCollectiontitle));
+  dataRead: async function(todoCollectiontitle, api = 'localStorage') {
+    var retrievedTodos = await apis[api].read(todoCollectiontitle);
+    console.log(retrievedTodos);
     if (retrievedTodos) {
       retrievedTodos.forEach(function(todo) {
         todos.add(new TodoItem(todo.id, todo.completed, todo.title,todo.deadline.substring(0,10).split("-").join("")))

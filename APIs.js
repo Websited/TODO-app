@@ -1,7 +1,7 @@
 const apis = {
   localStorage: {
     read: function(name) {
-      return localStorage.getItem(name);
+      return JSON.parse(localStorage.getItem(name));
     },
     write: function(name, data) {
       localStorage.setItem(name, JSON.stringify(data));
@@ -9,10 +9,20 @@ const apis = {
   },
   remoteApi: {
     read: function(name) {
-        // placeholder for remote api read
+      fetch(`https://jsonplaceholder.typicode.com/${name}`)
+        .then(res => res.json())
+        .then(res => console.log(res))
     },
     write: function(name, data) {
-        // placeholder for remote api write
+      fetch(`https://jsonplaceholder.typicode.com/${name}`, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        })
+        .then(res => res.json())
+        .then(res => console.log(res))
     }
   }
 }
