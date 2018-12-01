@@ -22,17 +22,16 @@ const TodoApp = {
     console.log(todos);
   },
   appendForm: function(todoTitleElement,title, todoId) {
-    todoTitleElement.innerHTML = `<form class="title-edit" onsubmit="event.preventDefault(); TodoApp.edittitle(${todoId});"><input maxlength="20" id='new-title' type="text" value=${title} required/></form>`
+    todoTitleElement.innerHTML = `<form class="title-edit" onsubmit="event.preventDefault(); TodoApp.editTitle(${todoId});"><input maxlength="20" id='new-title' type="text" value=${title} required/></form>`
   },
-  edittitle: function(todoId) {
+  editTitle: function(todoId) {
     const todo = todos.filter(todo => todo.id === todoId)[0];
     todo.edit(document.getElementById('new-title').value);
     localStorage.setItem('todos', JSON.stringify(todos));
     HTMLTodoIRenderer.render(todos);
   },
-  dataRead: async function(todoCollectiontitle, api = 'localStorage') {
-    var retrievedTodos = await apis[api].read(todoCollectiontitle);
-    console.log(retrievedTodos);
+  dataRead: async function(todoCollectionTitle, api = 'localStorage') {
+    const retrievedTodos = await apis[api].read(todoCollectionTitle);
     if (retrievedTodos) {
       retrievedTodos.forEach(function(todo) {
         todos.add(new TodoItem(todo.id, todo.completed, todo.title,todo.deadline.substring(0,10).split("-").join("")))
@@ -42,8 +41,8 @@ const TodoApp = {
       HTMLTodoIRenderer.render(todos);
     }
   },
-  dataWrite: function(todoCollectiontitle, todoData, api = 'localStorage') {
-    apis[api].write(todoCollectiontitle, todoData);
+  dataWrite: function(todoCollectionTitle, todoData, api = 'localStorage') {
+    apis[api].write(todoCollectionTitle, todoData);
     HTMLTodoIRenderer.render(todoData);
   }
 };
