@@ -27,6 +27,5 @@ const HTMLTodoIRenderer = {
     } else {
       listItem.innerHTML = "";
     }
-    console.log(todos);
   }
 }
