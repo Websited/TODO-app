@@ -30,18 +30,18 @@ const TodoApp = {
     localStorage.setItem('todos', JSON.stringify(todos));
     HTMLTodoIRenderer.render(todos);
   },
-  dataRead: async function(todoCollectionTitle, api = 'localStorage') {
+  dataRead: async function(todoCollectionTitle, api = 'localStorage') { // api = localStorage or remoteApi
     const retrievedTodos = await apis[api].read(todoCollectionTitle);
     if (retrievedTodos) {
       retrievedTodos.forEach(function(todo) {
-        todos.add(new TodoItem(todo.id, todo.completed, todo.title,todo.deadline.substring(0,10).split("-").join("")))
+        todos.add(new TodoItem(todo.id, todo.completed, todo.title, todo.deadline ? todo.deadline.substring(0,10).split("-").join("") : todo.deadline = ""))
         HTMLTodoIRenderer.render(todos);
       });
     } else {
       HTMLTodoIRenderer.render(todos);
     }
   },
-  dataWrite: function(todoCollectionTitle, todoData, api = 'localStorage') {
+  dataWrite: function(todoCollectionTitle, todoData, api = 'localStorage') { // api = localStorage or remoteApi
     apis[api].write(todoCollectionTitle, todoData);
     HTMLTodoIRenderer.render(todoData);
   }

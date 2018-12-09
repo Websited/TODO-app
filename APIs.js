@@ -10,12 +10,11 @@ const apis = {
   remoteApi: {
     getData: function(name) {
       return fetch(`https://jsonplaceholder.typicode.com/${name}`)
-      .then(res => res.json())
     },
     read: async function(name) {
       const fetched = await this.getData(name)
-      console.log(fetched);
-      return fetched;
+      const data = await fetched.json();
+      return data;
     },
     write: function(name, data) {
       fetch(`https://jsonplaceholder.typicode.com/${name}`, {
@@ -26,7 +25,6 @@ const apis = {
           }
         })
         .then(res => res.json())
-        .then(res => console.log(res))
     }
   }
 }

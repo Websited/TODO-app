@@ -1,4 +1,4 @@
-const todos = new TodoItemCollection();
+const todos = todoItemCollection();
 TodoApp.dataRead('todos');
 
 runSuites();
