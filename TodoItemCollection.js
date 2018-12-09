@@ -3,21 +3,15 @@
  * it's not supported by older browsers and can't be polyfilled properly
  * but what's more important it doesn't provide any additional features in this case
  */
-const canCount = (state) => ({
+const todoItemFunctions = (state) => ({
   count: () => {
     return state.length;
-  }
-});
-
-const canAdd = (state) => ({
+  },
   add: (todo) => {
     if (state.filter(obj => obj.id === todo.id).length === 0) {
       state.push(todo);
     }
-  }
-});
-
-const canRemove = (state) => ({
+  },
   remove: (id) => {
     const toRemove = state.indexOf(state.filter(item => item.id === id)[0]);
     if (toRemove >= 0) {
@@ -28,7 +22,7 @@ const canRemove = (state) => ({
 
 const todoItemCollection = function(elems = []) {
   let state = elems;
-  return Object.assign(state, canCount(state), canAdd(state), canRemove(state));
+  return Object.assign(state, todoItemFunctions(state));
 }
 
 /**
