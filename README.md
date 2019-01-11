@@ -7,7 +7,7 @@ Simple TODO app with writing to localStorage
 1. Download or clone this repo to your machine
 2. Run index.html
 
-### Usage
+### Usage 
 
 1. Provide Your TODO task name in proper form field (required)
 2. Provide deadline for your task (optional)
