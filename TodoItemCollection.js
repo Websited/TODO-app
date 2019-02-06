@@ -1,28 +1,27 @@
-/**
- * extending an Array might not be the best idea
- * it's not supported by older browsers and can't be polyfilled properly
- * but what's more important it doesn't provide any additional features in this case
- */
 const todoItemFunctions = (state) => ({
   count: () => {
-    return state.length;
+    return state.data.length;
   },
   add: (todo) => {
-    if (state.filter(obj => obj.id === todo.id).length === 0) {
-      state.push(todo);
+    if (state.data.filter(obj => obj.id === todo.id).length === 0) {
+      state.data.push(todo);
     }
   },
   remove: (id) => {
-    const toRemove = state.indexOf(state.filter(item => item.id === id)[0]);
+    const toRemove = state.data.indexOf(state.data.filter(item => item.id === id)[0]);
     if (toRemove >= 0) {
-      state.splice(toRemove, 1);
+      state.data.splice(toRemove, 1);
     }
+  },
+  print: () => {
+    return state.data;
   }
 });
-
-const todoItemCollection = function(elems = []) {
-  let state = elems;
-  return Object.assign(state, todoItemFunctions(state));
+const todoItemCollection = function(arr) {
+  let state = {
+    data: arr ? arr : []
+  }
+  return Object.assign({}, todoItemFunctions(state));
 }
 
 /**
