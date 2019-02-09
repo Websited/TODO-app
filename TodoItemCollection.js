@@ -15,6 +15,9 @@ const todoItemFunctions = (state) => ({
   },
   print: () => {
     return state.data;
+  },
+  displayCompleted: () => {
+    return state.data.filter(elem => elem.completed === true);
   }
 });
 const todoItemCollection = function(arr) {

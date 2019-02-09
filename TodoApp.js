@@ -6,20 +6,19 @@ const TodoApp = {
     todos.add(new TodoItem(id, false, title.value, date.value.split("-").join("")));
     title.value = ""
     date.value = ""
-    this.dataWrite('todos', todos);
+    this.dataWrite('todos', todos.print());
   },
   toggleCompleted: function(id) {
-    todos.filter(item => item.id === id)[0].toggleCheckbox();
-    this.dataWrite('todos', todos);
+    todos.displayCompleted().forEach(elem => elem.toggleCheckbox());
+    this.dataWrite('todos', todos.print());
   },
    deleteTodo: function(id) {
     todos.remove(id);
-    this.dataWrite('todos', todos);
+    this.dataWrite('todos', todos.print());
   },
   deleteCompleted: function() {
     completedTodos = todos.filter(todo => todo.completed === true);
     completedTodos.forEach(todo => TodoApp.deleteTodo(todo.id));
-    console.log(todos);
   },
   appendForm: function(todoTitleElement,title, todoId) {
     todoTitleElement.innerHTML = `<form class="title-edit" onsubmit="event.preventDefault(); TodoApp.editTitle(${todoId});"><input maxlength="20" id='new-title' type="text" value=${title} required/></form>`
