@@ -4,7 +4,7 @@ const HTMLTodoIRenderer = {
     const listItem = document.getElementById("list");
     const todoList = [];
     if (todos.length > 0) {
-      todos.forEach(function(todoObj){
+      todos.forEach(function (todoObj) {
         function generateTodoMarkup(todoObj) {
           return `<div class="todo-item ${todoObj.completed ? "finished" : ""} ${todoObj.deadline === "" ? "" : (todoObj.deadline < today ? "past-due" : "")}">
                     <div class="checkbox">
